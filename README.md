@@ -2,7 +2,7 @@
 
 An AI-powered assistant designed to guide organizations through **digital transformation** using industry-recognized change management frameworks and real-time trend analysis.
 
-🚀 Built by **Thomas Thi, Siva, Ethan, and Matthias** for the **IEEE Hackathon 2025**, this solution integrates:
+🚀 Built by **NTU Year 1 CCDS Undergraduates Thomas Thi, Siva, Ethan, and Matthias** for the **IEEE Hackathon 2025**, this solution integrates:
 
 - 🧠 A Groq-powered large language model
 - ⚙️ A FastAPI backend
