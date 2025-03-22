@@ -1,6 +1,6 @@
 # Change Management AI Assistant
 
-This project is an AI-powered assistant designed to help organizations navigate digital transformation using change management frameworks. Built for the **IEEE Hackathon 2025**, it integrates a FastAPI backend, a Grok-powered inference engine (via the Groq API), and a simple HTML/CSS/JavaScript frontend.
+This project is an AI-powered assistant designed to help organizations navigate digital transformation using change management frameworks. Done by Thomas Thi , Siva , Ethan and Matthias. Built for the **IEEE Hackathon 2025**, it integrates a FastAPI backend, a Grok-powered inference engine (via the Groq API), and a simple HTML/CSS/JavaScript frontend.
 
 ## Features
 - **Chat Interface**: Users can interact with the AI assistant via a web-based chat UI.
@@ -28,7 +28,6 @@ This project is an AI-powered assistant designed to help organizations navigate 
 ## Setup Instructions
 
 ### 1. Clone the Repository
-```bash
 git clone https://github.com/<your-username>/change-management-ai-assistant.git
 cd change-management-ai-assistant
 ### 2. Install Dependencies
