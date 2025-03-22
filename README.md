@@ -1,18 +1,26 @@
-# 💼 Change Management AI Assistant
+# 💼 Change Management AI Assistant – IEEE Hackathon 2025
 
-An AI-powered assistant built to guide organizations through **digital transformation** using proven change management frameworks. Created by **Thomas Thi, Siva, Ethan, and Matthias** for the **IEEE Hackathon 2025**.
+An AI-powered assistant designed to guide organizations through **digital transformation** using industry-recognized change management frameworks and real-time trend analysis.
 
-This project combines a **FastAPI** backend, **Groq-powered inference engine**, and a lightweight **HTML/CSS/JavaScript** frontend for a seamless AI-driven advisory experience.
+🚀 Built by **Thomas Thi, Siva, Ethan, and Matthias** for the **IEEE Hackathon 2025**, this solution integrates:
+
+- 🧠 A Groq-powered large language model
+- ⚙️ A FastAPI backend
+- 🌐 A responsive HTML/CSS/JS frontend
+- 📈 Real-time industry and market insights via NewsAPI
+- 📥 Feedback loop integration for continuous learning
 
 ---
 
 ## 🚀 Features
 
-- 💬 **Chat Interface** – Web-based UI for real-time interaction with the AI assistant  
-- 🧠 **Change Management Expertise** – Framework-aware insights using **ADKAR**, **Lewin**, **Kotter**, **McKinsey 7-S**, and **Nudge Theory**  
-- 📚 **Knowledge Base** – Embedded with FAQs, case studies, past campaign insights, and framework references  
-- 📝 **Feedback Logging** – Captures and stores user feedback in a `feedback.log` file  
-- 🐳 **Dockerized Deployment** – Easily containerize and run the application anywhere  
+- 💬 **Web-Based Chat Interface**: Interact with "Navi", your friendly AI change management advisor  
+- 🧠 **Framework Intelligence**: Recommendations based on ADKAR, Lewin, Kotter, McKinsey 7S, and Nudge Theory  
+- 📚 **Knowledge Base**: Includes frameworks, FAQs, case studies, emotional strategies, past campaigns, benchmarks, and more  
+- 📰 **Live Market Insights**: Fetches and analyzes news articles to reflect current tech and industry trends  
+- ❤️ **Emotion-Aware Advice**: Tailored suggestions for handling resistance, trust, resilience, and optimism  
+- 🔁 **Feedback Logging**: Records timestamped user feedback for future assistant improvements  
+- 🐳 **Docker-Ready**: Deployable with a single command using Docker  
 
 ---
 
@@ -76,3 +84,8 @@ The AI will respond with suggestions grounded in popular change management model
 "Compare Lewin and ADKAR for HR restructuring."
 
 "How to apply Kotter's 8 steps in a finance department merger?"
+
+##📝 License
+This project is licensed under the MIT License.
+
+
