@@ -6,7 +6,7 @@ from threading import Thread
 import sys
 
 # Initialize Groq client 
-GROQ_API_KEY = "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"
+GROQ_API_KEY = "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"
 client = Groq(api_key=GROQ_API_KEY)
 
 # News API configuration
