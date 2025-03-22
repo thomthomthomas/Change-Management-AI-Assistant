@@ -35,6 +35,7 @@ An AI-powered assistant designed to guide organizations through **digital transf
 - Python 3.9+
 - Docker (optional, for containerized deployment)
 - Groq API Key ([Get one here](https://groq.com))
+- NewsAPI Key ([newsapi.org](https://newsapi.org))
 - Git
 
 ---
@@ -55,9 +56,9 @@ pip install -r requirements.txt
 ```
 ### 3. Configure your environment
 ```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
+export GROQ_API_KEY="your-groq-api-key"
+export NEWS_API_KEY="your-newsapi-key"
+
 ```
 ### 4. Start Backend Server
 ```bash
