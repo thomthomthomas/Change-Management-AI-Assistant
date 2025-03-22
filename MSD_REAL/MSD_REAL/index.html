@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fluxion</title>
+  <style>
+    :root {
+      --bg-color: #f5f3ef;
+      --chat-bg: #ede6dc;
+      --chat-box: #fefefe;
+      --user-msg: #e1dcc5;
+      --bot-msg: #ffffff;
+      --primary: #6e5c4e;
+      --accent: #a88e7d;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--primary);
+    }
+
+    header {
+      background-color: var(--chat-bg);
+      padding: 20px 40px;
+    }
+
+    header h1 {
+      font-size: 26px;
+      color: var(--primary);
+    }
+
+    .chat-wrapper {
+      max-width: 800px;
+      margin: 40px auto;
+      background: var(--chat-bg);
+      border-radius: 20px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      padding: 30px;
+    }
+
+    .chat-wrapper h2 {
+      text-align: left;
+      font-size: 24px;
+      margin-bottom: 20px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    #chat-log {
+      height: 400px;
+      overflow-y: auto;
+      background-color: var(--chat-box);
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .message {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 12px 0;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .bubble {
+      padding: 12px 18px;
+      border-radius: 10px;
+      white-space: pre-wrap;
+      max-width: 70%;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .user .bubble {
+      background-color: var(--user-msg);
+      margin-left: auto;
+    }
+
+    .bot .bubble {
+      background-color: var(--bot-msg);
+      margin-right: auto;
+    }
+
+    form {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 20px;
+      background-color: var(--chat-box);
+      font-size: 15px;
+    }
+
+    button {
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      padding: 10px;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    button:hover {
+      background-color: #8c7869;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Fluxion</h1>
+  </header>
+
+  <div class="chat-wrapper">
+    <h2>Change Management Assistant</h2>
+    <div id="chat-log">
+      <div class="message bot">
+        <img class="avatar" src="https://cdn-icons-png.flaticon.com/512/7007/7007810.png" alt="Navi Avatar" />
+        <div class="bubble">Hi, I'm <strong>Navi</strong>! How can I help you today?</div>
+      </div>
+    </div>
+    <form id="message-form">
+      <input type="text" id="message-input" placeholder="Type your message..." required />
+      <button type="submit">➤</button>
+    </form>
+  </div>
+
+  <script>
+    const chatLog = document.getElementById('chat-log');
+    const messageForm = document.getElementById('message-form');
+    const messageInput = document.getElementById('message-input');
+
+    function addMessage(text, sender) {
+      const messageDiv = document.createElement('div');
+      messageDiv.classList.add('message', sender);
+
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      bubble.textContent = text;
+
+      if (sender === 'bot') {
+        const avatar = document.createElement('img');
+        avatar.className = 'avatar';
+        avatar.src = 'https://cdn-icons-png.flaticon.com/512/7007/7007810.png';
+        avatar.alt = 'Navi';
+        messageDiv.appendChild(avatar);
+      }
+
+      messageDiv.appendChild(bubble);
+      chatLog.appendChild(messageDiv);
+      chatLog.scrollTop = chatLog.scrollHeight;
+    }
+
+    messageForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const message = messageInput.value.trim();
+      if (!message) return;
+
+      addMessage(message, 'user');
+      messageInput.value = '';
+
+      try {
+        const response = await fetch('http://127.0.0.1:8000/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message })
+        });
+        if (!response.ok) throw new Error('Network error');
+        const data = await response.json();
+        addMessage(data.response, 'bot');
+      } catch (error) {
+        addMessage('❗ Sorry, something went wrong.', 'bot');
+      }
+    });
+  </script>
+</body>
+</html>
