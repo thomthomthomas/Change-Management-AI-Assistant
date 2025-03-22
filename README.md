@@ -25,7 +25,7 @@ An AI-powered assistant designed to guide organizations through **digital transf
 ---
 
 ## 📁 Project Structure
-├── backend/ # FastAPI backend │ └── main.py # API routes and server logic ├── inference.py # AI inference with embedded knowledge base ├── index.html # Frontend chat interface ├── Dockerfile # Docker configuration ├── requirements.txt # Python dependencies ├── feedback.log # Runtime feedback storage └── README.md # Project documentation
+├── backend/ # FastAPI backend ├── inference.py # AI inference with embedded knowledge base ├── index.html # Frontend chat interface ├── Dockerfile # Docker configuration ├── requirements.txt # Python dependencies ├── feedback.log # Runtime feedback storage └── README.md # Project documentation
 
 
 ---
@@ -34,7 +34,7 @@ An AI-powered assistant designed to guide organizations through **digital transf
 
 - Python 3.9+
 - Docker (optional, for containerized deployment)
-- Groq API Key ([Get one here](https://groq.com))
+- Groq API Key ([groq.com](https://groq.com))
 - NewsAPI Key ([newsapi.org](https://newsapi.org))
 - Git
 
