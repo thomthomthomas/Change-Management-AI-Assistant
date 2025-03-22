@@ -5,12 +5,12 @@ import time
 from threading import Thread
 import sys
 
-# Initialize Groq client with your API key
+# Initialize Groq client 
 GROQ_API_KEY = "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"
 client = Groq(api_key=GROQ_API_KEY)
 
 # News API configuration
-NEWS_API_KEY = "8cd6e955c5e4437e929e65e7526dba3a"  # Your NewsAPI.org key
+NEWS_API_KEY = "8cd6e955c5e4437e929e65e7526dba3a"  
 NEWS_API_URL = "https://newsapi.org/v2/everything"
 NEWS_QUERY = "tech trends OR market conditions in change management digital transformation"
 NEWS_REFRESH_INTERVAL = 30 * 60  # Refresh every 30 minutes (in seconds)
