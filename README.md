@@ -62,7 +62,7 @@ export NEWS_API_KEY="your-newsapi-key"
 ```
 ### 4. Start Backend Server
 ```bash
-uvicorn backend.main:app --host 127.0.0.1 --port 8000
+uvicorn backend:app --host 127.0.0.1 --port 8000
 
 ```
 ### 5. Start FrontEnd Server
