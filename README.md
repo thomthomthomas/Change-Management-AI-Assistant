@@ -84,6 +84,8 @@ The AI will respond with suggestions grounded in popular change management model
 
 "Compare Lewin and ADKAR for HR restructuring."
 
+"Based on the latest market conditions, which change management framework should I use for a new AI-driven project"
+
 "How to apply Kotter's 8 steps in a finance department merger?"
 
 ##📝 License
