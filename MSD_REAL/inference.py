@@ -33,12 +33,12 @@ def summarize_conversation(messages):
         print(f"Error summarizing: {e}")
         return "Conversation summary unavailable."
 
-# Initialize Groq client with your API key
+# Initialize Groq client with API key
 GROQ_API_KEY = "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" #"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"
 client = Groq(api_key=GROQ_API_KEY)
 
 # News API configuration
-NEWS_API_KEY = "8cd6e955c5e4437e929e65e7526dba3a"  # Your NewsAPI.org key
+NEWS_API_KEY = "8cd6e955c5e4437e929e65e7526dba3a"  # NewsAPI.org key
 NEWS_API_URL = "https://newsapi.org/v2/everything"
 NEWS_QUERY = "tech trends OR market conditions in change management digital transformation"
 NEWS_REFRESH_INTERVAL = 30 * 60  # Refresh every 30 minutes (in seconds)
@@ -251,14 +251,24 @@ def generate_response(message):
     news_trends = process_news_into_trends(KNOWLEDGE_BASE["market_conditions"])
     
     system_prompt = (
-        "You are Navi, an AI Assistant specialized in change management.\n\n"
+        "You are Navi, an AI Assistant specialized in change management, built for the IEEE Hackathon 2025. "
+        "Your purpose is to assist organizations in navigating digital transformation using change management frameworks, "
+        "driven by the latest industry trends from recent news.\n\n"
         "**Instructions**:\n"
-        "- Use frameworks like ADKAR/Lewin and reference the knowledge base below.\n"
-        "- Address the user by name if known.\n\n"
-        "**Knowledge Base**:\n"
+        "- Use conversation history to recall details (e.g., names) and weave them into responses naturally.\n"
+        "- For every query, identify the scope (organizational, project, or people-level) and recommend a framework.\n"
+        "- Compare at least 2-3 frameworks (ADKAR, Lewin, Kotter, McKinsey, Nudge) and justify your choice. **Base your reasoning directly on the 'Processed News Trends' provided below, as of March 22, 2025.** Summarize these trends at the start of your reasoning and tie them explicitly to your recommendation. Only use static knowledge base data if news trends are unavailable, noting this limitation.\n"
+        "- Provide actionable steps based on the chosen framework, referencing past campaigns or case studies if relevant.\n"
+        "- Maintain a professional, empathetic tone and request feedback after each response.\n"
+        "- When referencing news trends, you may optionally cite the source (e.g., 'Source: Crescendo.ai') for clarity.\n\n"
+        "**Processed News Trends (from News API, as of March 22, 2025)**:\n"
+        f"{'; '.join(news_trends)}\n\n"
+        "**Full Knowledge Base (Static + Dynamic News)**:\n"
         f"{full_knowledge_base}\n\n"
-        "**News Trends**:\n"
-        f"{'; '.join(news_trends)}"
+        "**Conversation History**:\n"
+        "{history}"
+    ).format(
+        history="\n".join([f"{msg['role'].capitalize()}: {msg['content']}" for msg in conversation_history])
     )
 
     # Check token usage and summarize if needed
