@@ -1,0 +1,226 @@
+'''
+ & C:\\Users\\SIVA\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe -m http.server 8080 --directory C:\\Users\\SIVA\\Downloads\\MSD_REAL\\MSD_REAL
+http://127.0.0.1:8080/index.html
+'''
+& C:\Users\ethan\AppData\Local\Programs\Python\Python312\python.exe -m http.server 8080 --directory "C:\Users\ethan\Downloads\MSD_REAL (1)\MSD_REAL"
+'''
+from groq import Groq
+import os
+
+# Load from environment (optional secure method)
+# from dotenv import load_dotenv
+# load_dotenv()
+# GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+
+# OR directly (not recommended for production)
+GROQ_API_KEY = "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"
+
+# Embedded knowledge base
+KNOWLEDGE_BASE = {
+    "frameworks": {
+        "ADKAR": {
+            "description": "ADKAR is a goal-oriented change management model with five stages: Awareness, Desire, Knowledge, Ability, Reinforcement.",
+            "steps": [
+                "Awareness: Communicate the need for change to employees.",
+                "Desire: Motivate and encourage participation in the change.",
+                "Knowledge: Provide training and information on how to implement the change.",
+                "Ability: Support practical application through coaching and practice.",
+                "Reinforcement: Sustain the change with feedback and recognition."
+            ]
+        },
+        "Lewin": {
+            "description": "Lewin's Change Management Model has three stages: Unfreeze, Change, Refreeze.",
+            "steps": [
+                "Unfreeze: Prepare the organization by breaking down the existing status quo.",
+                "Change: Implement the new processes or systems.",
+                "Refreeze: Solidify the changes by establishing new norms and stability."
+            ]
+        },
+        "Kotter": {
+            "description": "Kotter's 8-Step Model outlines how to lead organizational change through a sequence of steps.",
+            "steps": [
+                "Create a sense of urgency.",
+                "Build a guiding coalition.",
+                "Form a strategic vision and initiatives.",
+                "Enlist a volunteer army.",
+                "Enable action by removing barriers.",
+                "Generate short-term wins.",
+                "Sustain acceleration.",
+                "Institute change."
+            ]
+        },
+        "McKinsey": {
+            "description": "The McKinsey 7S Framework focuses on aligning seven key internal elements to ensure effective change.",
+            "steps": [
+                "Align Strategy, Structure, Systems, Shared Values, Style, Staff, and Skills.",
+                "Assess interdependencies among elements.",
+                "Identify gaps and develop alignment strategies."
+            ]
+        },
+        "Nudge": {
+            "description": "Nudge Theory emphasizes influencing behavior subtly by changing the environment or presentation of choices.",
+            "steps": [
+                "Identify behavioral drivers.",
+                "Design nudges (e.g., defaults, social norms).",
+                "Implement changes with minimal resistance.",
+                "Measure and adapt based on feedback."
+            ]
+        }
+    },
+    "faqs": [
+        {
+            "q": "What is change management?",
+            "a": "Change management is a structured approach to transitioning individuals, teams, and organizations from a current state to a desired future state, ensuring successful adoption of changes."
+        },
+        {
+            "q": "How does the ADKAR model work?",
+            "a": "The ADKAR model focuses on individual change through five stages: Awareness of the need for change, Desire to participate, Knowledge of how to change, Ability to implement the change, and Reinforcement to sustain it."
+        },
+        {
+            "q": "What are common challenges in change management?",
+            "a": "Common challenges include resistance to change, lack of communication, insufficient training, and failure to sustain changes over time."
+        }
+    ],
+    "past_campaigns": [
+        {
+            "id": 1,
+            "title": "CRM System Rollout 2023",
+            "description": "Implemented a new CRM system across the sales team.",
+            "actions": [
+                "Conducted town hall meetings to build awareness.",
+                "Offered incentives to encourage adoption.",
+                "Provided two weeks of training sessions.",
+                "Set up a helpdesk for ongoing support."
+            ],
+            "outcome": "80% adoption rate within 3 months, improved sales tracking.",
+            "recommendations": "Increase training duration for complex systems."
+        },
+        {
+            "id": 2,
+            "title": "Remote Work Transition 2020",
+            "description": "Shifted to a fully remote work environment during the pandemic.",
+            "actions": [
+                "Sent weekly updates to communicate the need for remote work.",
+                "Provided laptops and software access to all employees.",
+                "Hosted virtual workshops on remote collaboration tools."
+            ],
+            "outcome": "90% employee satisfaction, but initial resistance due to tech issues.",
+            "recommendations": "Ensure IT infrastructure is robust before rollout."
+        }
+    ],
+    "emotions": {
+        "resistance": "Acknowledge concerns, provide clear benefits of the change, and involve employees in the planning process to increase buy-in.",
+        "trust": "Be transparent with communication, maintain consistency in messaging, and show empathy to build trust.",
+        "resilience": "Offer support resources like counseling, celebrate small wins, and provide clear timelines to reduce uncertainty.",
+        "optimism": "Highlight success stories, share positive outcomes, and engage employees with a vision of the future."
+    },
+    "industry_trends": [
+        "Increased adoption of AI tools for change management, with 60% of organizations using AI by 2024 (Source: Gartner).",
+        "Focus on employee upskilling to keep pace with digital transformation, especially in tech-driven industries."
+    ],
+    "what_if_scenarios": [
+        {
+            "scenario": "What if we apply Lewin's model instead of ADKAR?",
+            "analysis": "Lewin's model focuses on organizational-level change with three stages (Unfreeze, Change, Refreeze), making it simpler for large-scale structural changes. ADKAR, however, is more individual-focused, better for ensuring employee adoption. Lewin's might miss individual barriers, while ADKAR might be too granular for quick, top-down changes."
+        }
+    ],
+    "tech_trends": [
+        "AI-driven analytics for predicting change resistance (e.g., sentiment analysis).",
+        "Virtual reality training programs for immersive learning experiences."
+    ],
+    "benchmarks": [
+        "Adoption Rate: Successful change initiatives typically achieve 70-90% adoption within 6 months (Source: Prosci).",
+        "Employee Satisfaction: Post-change satisfaction should be above 75% to indicate effective management (Source: McKinsey)."
+    ],
+    "case_studies": [
+        {
+            "industry": "Healthcare",
+            "description": "A hospital implemented an electronic health record (EHR) system.",
+            "challenge": "High resistance from staff due to unfamiliarity.",
+            "solution": "Used ADKAR: Built awareness through meetings, provided extensive training, and reinforced with regular feedback.",
+            "outcome": "85% adoption within 4 months, improved patient record accuracy."
+        },
+        {
+            "industry": "Retail",
+            "description": "A retail chain adopted a new inventory management system across 50 stores.",
+            "challenge": "Geographic diversity and varying tech skills.",
+            "solution": "Applied Lewin's model: Unfroze by communicating benefits, changed by rolling out in phases, refroze with new SOPs.",
+            "outcome": "Reduced stockouts by 30%, but initial rollout was slow in rural stores."
+        }
+    ]
+}
+
+def generate_response(message):
+    client = Groq(api_key=GROQ_API_KEY)
+
+    system_prompt = (
+        "You are an AI Assistant specialized in change management, built for the IEEE Hackathon 2025. "
+        "Your purpose is to assist organizations in navigating digital transformation by leveraging change management frameworks.\n\n"
+        "**Knowledge Base**:\n"
+        "- **Frameworks**: {frameworks}\n"
+        "- **FAQs**: {faqs}\n"
+        "- **Past Campaigns**: {past_campaigns}\n"
+        "- **Emotional Management**: {emotions}\n"
+        "- **Industry Trends**: {industry_trends}\n"
+        "- **What-If Scenarios**: {what_if_scenarios}\n"
+        "- **Tech Trends**: {tech_trends}\n"
+        "- **Benchmarks**: {benchmarks}\n"
+        "- **Case Studies**: {case_studies}\n\n"
+        "**Capabilities**:\n"
+        "1. Answer general queries with expertise in change management.\n"
+        "2. Recommend actions based on scenarios and scope.\n"
+        "3. Review communication drafts for clarity, tone, and impact.\n"
+        "4. Suggest emotional support strategies for resistance and trust issues.\n"
+        "5. Answer FAQs if a match exists.\n"
+        "6. Evaluate what-if scenarios using case knowledge.\n"
+        "7. Always request user feedback after responding.\n"
+        "8. Maintain a professional, empathetic tone.\n"
+        "9. **Framework Evaluation**: For every input, compare all frameworks (ADKAR, Lewin, Kotter, McKinsey, Nudge). "
+        "Choose the most relevant one based on the user’s context. Clearly explain the selection and respond using that framework.\n\n"
+        "User message: {message}"
+    ).format(
+        frameworks=KNOWLEDGE_BASE["frameworks"],
+        faqs=KNOWLEDGE_BASE["faqs"],
+        past_campaigns=KNOWLEDGE_BASE["past_campaigns"],
+        emotions=KNOWLEDGE_BASE["emotions"],
+        industry_trends=KNOWLEDGE_BASE["industry_trends"],
+        what_if_scenarios=KNOWLEDGE_BASE["what_if_scenarios"],
+        tech_trends=KNOWLEDGE_BASE["tech_trends"],
+        benchmarks=KNOWLEDGE_BASE["benchmarks"],
+        case_studies=KNOWLEDGE_BASE["case_studies"],
+        message=message
+    )
+
+    try:
+        chat_completion = client.chat.completions.create(
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": message}
+            ],
+            model="llama3-70b-8192",
+            max_tokens=1000,
+            temperature=0.9,
+            top_p=0.95
+        )
+        reply = chat_completion.choices[0].message.content.strip()
+        reply_with_feedback = f"Response:\n\n{reply}\n\n---\n *Was this helpful? Please provide feedback to improve my responses.*"
+        return reply_with_feedback if reply else "I'm not sure what to say!"
+    except Exception as e:
+        print(f"Error calling Groq API: {e}")
+        return "Sorry, I couldn't process your request right now."
+
+# Testing block
+if __name__ == "__main__":
+    test_messages = [
+        "Recommend actions for a new CRM system.",
+        "Review this: We're changing how we do onboarding next month.",
+        "Employees are resisting the AI tools rollout.",
+        "What is change management?",
+        "Compare Lewin and ADKAR for HR restructuring."
+    ]
+    for msg in test_messages:
+        print(f"Input: {msg}")
+        print(generate_response(msg))
+        print("\n" + "="*80 + "\n")
+
+'''
